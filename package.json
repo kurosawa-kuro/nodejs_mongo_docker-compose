@@ -1,5 +1,5 @@
 {
-  "name": "iftiTaskList",
+  "name": "nodejs_mongo_docker-compose",
   "version": "1.0.0",
   "description": "Simple task manager on Docker",
   "main": "server.js",
