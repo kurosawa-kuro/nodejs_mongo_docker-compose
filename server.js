@@ -2,6 +2,7 @@ var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 const listEndpoints = require("express-list-endpoints");
+var mongoose = require("mongoose");
 
 var index = require("./routes/index");
 var tasks = require("./routes/tasks");
@@ -33,9 +34,31 @@ app.use("/api", tasks);
 app.use("/api", tasks_mongojs_cloud);
 app.use("/api", tasks_mongojs_docker);
 app.use("/api", tasks_mongojs_local);
+// これをやりたい
 app.use("/api", tasks_mongoose_cloud);
 app.use("/api", tasks_mongoose_docker);
 app.use("/api", tasks_mongoose_local);
+
+// DB Config
+const db =
+  "mongodb://mongo:mongo@cluster0-shard-00-00-jmygq.mongodb.net:27017,cluster0-shard-00-01-jmygq.mongodb.net:27017,cluster0-shard-00-02-jmygq.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+
+// Connect to MongoDB
+mongoose
+  .connect(db)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
+
+// Post.find()
+//   .sort({ date: -1 })
+//   .then(posts => res.json(posts))
+//   .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
+
+// console.log("【Post】");
+// Post.find()
+//   .sort({ date: -1 })
+//   .then(posts => console.log(posts))
+//   .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
 
 app.listen(port, function() {
   console.log("Server started on port " + port);
