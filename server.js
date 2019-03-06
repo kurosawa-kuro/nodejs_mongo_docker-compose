@@ -34,7 +34,6 @@ app.use("/api", tasks);
 app.use("/api", tasks_mongojs_cloud);
 app.use("/api", tasks_mongojs_docker);
 app.use("/api", tasks_mongojs_local);
-// これをやりたい
 app.use("/api", tasks_mongoose_cloud);
 app.use("/api", tasks_mongoose_docker);
 app.use("/api", tasks_mongoose_local);
@@ -48,17 +47,6 @@ mongoose
   .connect(db)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
-
-// Post.find()
-//   .sort({ date: -1 })
-//   .then(posts => res.json(posts))
-//   .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
-
-// console.log("【Post】");
-// Post.find()
-//   .sort({ date: -1 })
-//   .then(posts => console.log(posts))
-//   .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
 
 app.listen(port, function() {
   console.log("Server started on port " + port);
